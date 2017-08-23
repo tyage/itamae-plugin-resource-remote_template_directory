@@ -1,8 +1,6 @@
 # Itamae::Plugin::Resource::RemoteTemplateDirectory
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/itamae/plugin/resource/remote_template_directory`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Extended remote_directory resource which each local file is template.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Actions and attributes are same as [remote_directory](https://github.com/itamae-kitchen/itamae/wiki/remote_directory-resource) resource.
 
 ## Development
 
