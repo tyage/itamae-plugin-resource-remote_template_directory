@@ -1,10 +1,10 @@
 require 'itamae'
-require "itamae/plugin/resource/remote_template_directory/version"
+require 'pathname'
 
 module Itamae
   module Plugin
     module Resource
-      module RemoteTemplateDirectory < ::Itamae::Resource::RemoteDirectory
+      class RemoteTemplateDirectory < ::Itamae::Resource::RemoteDirectory
         define_attribute :variables, type: Hash, default: {}
 
         def pre_action
@@ -16,14 +16,14 @@ module Itamae
           render_and_send_directory(src)
         end
 
-        def render_and_send_directory(src)
-          ::Dir[ ::File.join('.', '**', '*') ]
+        def render_and_send_directory(src_path)
+          ::Dir[ ::File.join(src_path, '**', '*') ]
             .reject { |p| ::File.directory? p }
-            .each { |file|
-              source_file = ::File.expand_path(file, src)
-              remote_file = ::File.expand_path(file, @temppath)
+            .each { |source_file|
+              relative_path = Pathname.new(source_file).relative_path_from(Pathname.new(src_path))
+              remote_file = ::File.expand_path(relative_path, @temppath)
 
-              content = ::Itemae::Resource::Template::RenderContext.new(self).render_file(source_file)
+              content = ::Itamae::Resource::Template::RenderContext.new(self).render_file(source_file)
               local_file = Tempfile.open('itamae')
               local_file.write(content)
               local_file.close
