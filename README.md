@@ -23,6 +23,43 @@ Or install it yourself as:
 Basic actions and attributes are same as [remote_directory resource](https://github.com/itamae-kitchen/itamae/wiki/remote_directory-resource).
 Also, `variables` attribute of [template resource](https://github.com/itamae-kitchen/itamae/wiki/template-resource) is available.
 
+Here is sample recipe and its result.
+
+`recipe.rb`
+
+```rb
+node.reverse_merge!(
+  var: 'value of node var'
+)
+
+remote_template_directory 'copy directory' do
+  source 'sample_directories'
+  path '/tmp/remote_template_directory'
+  variables(
+    var1: 'value of var1',
+    var2: 'value of var2'
+  )
+end
+```
+
+`sample_directories/test`
+
+```rb
+here is template
+<%= @var1 %>
+<%= @var2 %>
+<%= node[:var] %>
+```
+
+`/tmp/remote_template_directory/test`
+
+```
+here is template
+value of var1
+value of var2
+value of node var
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake true` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
