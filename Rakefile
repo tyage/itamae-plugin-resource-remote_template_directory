@@ -4,7 +4,14 @@ require 'rspec/core/rake_task'
 task :spec    => 'spec:all'
 task :default => :spec
 
+namespace :itamae do
+  task 'localhost' do
+    system('bundle exec itamae local spec/recipe.rb') || abort
+  end
+end
+
 namespace :spec do
+
   targets = []
   Dir.glob('./spec/*').each do |dir|
     next unless File.directory?(dir)
