@@ -20,7 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
-Actions and attributes are same as [remote_directory](https://github.com/itamae-kitchen/itamae/wiki/remote_directory-resource) resource.
+Basic actions and attributes are same as [remote_directory resource](https://github.com/itamae-kitchen/itamae/wiki/remote_directory-resource).
+Also, `variables` attribute of [template resource](https://github.com/itamae-kitchen/itamae/wiki/template-resource) is available.
 
 ## Development
 
