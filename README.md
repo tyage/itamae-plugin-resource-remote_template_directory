@@ -33,8 +33,8 @@ node.reverse_merge!(
 )
 
 remote_template_directory 'copy directory' do
-  source 'sample_directories'
-  path '/tmp/remote_template_directory'
+  source 'nginx-confs'
+  path '/etc/nginx/sites-enabled'
   variables(
     var1: 'value of var1',
     var2: 'value of var2'
@@ -42,7 +42,7 @@ remote_template_directory 'copy directory' do
 end
 ```
 
-`sample_directories/test`
+`nginx-confs/test.conf`
 
 ```rb
 here is template
@@ -51,7 +51,7 @@ here is template
 <%= node[:var] %>
 ```
 
-`/tmp/remote_template_directory/test`
+`/etc/nginx/sites-enabled/test.conf`
 
 ```
 here is template
