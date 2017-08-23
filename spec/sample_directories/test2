@@ -1,0 +1,4 @@
+test variables
+<%= @var1 %>
+<%= @var2 %>
+<%= node[:var] %>
